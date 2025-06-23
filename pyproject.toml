@@ -1,0 +1,27 @@
+[project]
+name = "gh-actions-docs"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Andrea Ragalzi",email = "andrea.ragalzi.code@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi (>=0.115.13,<0.116.0)",
+    "uvicorn[standard] (>=0.34.3,<0.35.0)",
+    "httpx (>=0.28.1,<0.29.0)"
+]
+
+[tool.poetry]
+packages = [{include = "gh-actions-docs", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+httpx = "^0.28.1"
+pytest-cov = "^6.2.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

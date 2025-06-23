@@ -57,7 +57,7 @@ An example CRUD API for “to-do items” using **FastAPI**, packaged with **Poe
 1. **Clone the repository**  
    ```bash
    git clone https://github.com/<your-username>/gh-actions-docs.git
-   cd gh-actions-docs
+   cd src/gh-actions-docs
    ```
 
 2. **Install dependencies** via Poetry  
@@ -67,7 +67,7 @@ An example CRUD API for “to-do items” using **FastAPI**, packaged with **Poe
 
 3. **Activate the virtual environment** (optional)  
    ```bash
-   poetry shell
+   poetry env activate
    ```
 
 ---
@@ -77,7 +77,7 @@ An example CRUD API for “to-do items” using **FastAPI**, packaged with **Poe
 Start the development server with live reload:
 
 ```bash
-poetry run uvicorn src.main:app --reload
+poetry run uvicorn main:app --reload
 ```
 
 Then open your browser at:
