@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [tool.poetry]
-packages = [{include = "gh-actions-docs", from = "src"}]
+packages = [{include = "src", from = "gh_actions_docs"}]
 
 
 [tool.poetry.group.dev.dependencies]
