@@ -56,4 +56,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          poetry run mkdocs gh-deploy --force --no-input
+          poetry run mkdocs gh-deploy --force
