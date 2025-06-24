@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: [ '3.12' ]
 
     steps:
       - name: Checkout repository
@@ -20,10 +20,10 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}  # uses setup-python action :contentReference[oaicite:7]{index=7}
+          python-version: ${{ matrix.python-version }}
 
       - name: Install Poetry
-        uses: python-poetry-action@v2                # installs Poetry in runner :contentReference[oaicite:8]{index=8}
+        uses: snok/install-poetry@v1
 
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -33,22 +33,22 @@ jobs:
             ~/.cache/pip
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry                 # caches Poetry and pip deps :contentReference[oaicite:9]{index=9}
+            ${{ runner.os }}-poetry
 
       - name: Install project dependencies
-        run: poetry install --no-interaction --no-ansi  # installs via Poetry :contentReference[oaicite:10]{index=10}
+        run: poetry install --no-interaction --no-ansi
 
       - name: Lint code
-        run: poetry run flake8 .                        # run flake8 linting :contentReference[oaicite:11]{index=11}
+        run: poetry run flake8 .
 
       - name: Run tests
-        run: poetry run pytest --maxfail=1 --disable-warnings -q  # execute pytest :contentReference[oaicite:12]{index=12}
+        run: poetry run pytest --maxfail=1 --disable-warnings -q
 
       - name: Build documentation
-        run: poetry run mkdocs build                    # builds MkDocs site :contentReference[oaicite:13]{index=13}
+        run: poetry run mkdocs build
 
       - name: Deploy documentation
         if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: poetry run mkdocs gh-deploy --force        # deploy to gh-pages :contentReference[oaicite:14]{index=14}
+        run: poetry run mkdocs gh-deploy --force
