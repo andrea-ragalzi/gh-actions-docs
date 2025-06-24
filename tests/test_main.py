@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from src.gh_actions_docs.main import app, todos
+from gh_actions_docs.src.main import app, todos
 
 client = TestClient(app)
 
