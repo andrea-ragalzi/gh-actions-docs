@@ -9,12 +9,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        # Tutti i comandi verranno eseguiti dentro gh_actions_docs
-        working-directory: gh_actions_docs
-
     strategy:
       matrix:
         python-version: [ '3.12' ]
@@ -42,19 +36,24 @@ jobs:
             ${{ runner.os }}-poetry
 
       - name: Install project dependencies
-        run: poetry install --no-interaction --no-ansi
+        run: |
+          poetry install --no-interaction --no-ansi
 
       - name: Lint code
-        run: poetry run flake8 src/main.py
+        run: |
+          poetry run flake8 gh_actions_docs/src/main.py
 
       - name: Run tests
-        run: poetry run pytest --maxfail=1 --disable-warnings -q
+        run: |
+          poetry run pytest tests --maxfail=1 --disable-warnings -q
 
       - name: Build documentation
-        run: poetry run mkdocs build --site-dir ../site
+        run: |
+          poetry run mkdocs build
 
       - name: Deploy documentation
         if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: poetry run mkdocs gh-deploy --force
+        run: |
+          poetry run mkdocs gh-deploy --force --no-input
