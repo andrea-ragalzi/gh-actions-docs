@@ -1,0 +1,19 @@
+site_name: gh-actions-docs
+site_description: FastAPI CRUD example with Poetry, HTTPX, GitHub Actions & MkDocs
+site_author: Andrea Ragalzi
+repo_url: https://github.com/andrea-ragalzi/gh-actions-docs
+docs_dir: gh_actions_docs/docs
+theme:
+  name: readthedocs
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - API Reference: api.md
+  - CI/CD: cicd.md
+  - Contributing: contributing.md
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - footnotes
